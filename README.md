@@ -25,36 +25,35 @@ Connects to a database, reads PeopleCode bytecode and SQL definitions from the P
 
 Usage: e.g.
 
-DecodePCODE.bat PPLTLS88CUR
+    DecodePCODE.bat PPLTLS88CUR
 
 (Connects to the database and uses this project definition to determine what PeopleCode segments and SQL definitions to extract)
 
-DecodePCODE.bat custom
+    DecodePCODE.bat custom
 
 (all PeopleCode/SQL with LASTUPDOPRID <> 'PPLSOFT')
 
-DecodePCODE.bat since 2011/01/01
+    DecodePCODE.bat since 2011/01/01
 
 (LASTUPDDTTM on or after the specified day)
 
-DecodePCODE.bat since-days 7
+    DecodePCODE.bat since-days 7
 
 (same, but relative to current date)
 
-DecodePCODE.bat since-last-time
+    DecodePCODE.bat since-last-time
 
 (this reads a file 'last-time.txt' , which is created by this program whenever it runs with one of the 'since' parameters. You may want to use this command in a recurrent job)
 
-DecodePCODE.bat since-last-time custom
+    DecodePCODE.bat since-last-time custom
 
 (same, but only code with LASTUPDOPRID <> 'PPLSOFT'. Note that while this will keep your repository free of delivered code, it means you won't be able to tell if a bundle has wiped out a customization)
 
-
-DecodePCODE.bat since 2012/01/01 oprid JOHNNY
+    DecodePCODE.bat since 2012/01/01 oprid JOHNNY
 
 (parameter 'OPRID' can be combined with 'custom' or any of the 'since' parameters; it adds a 'LASTUPDOPRID = ...' clause to the selects)
 
-DecodePCODE.bat PPLTLS88CUR.xml
+    DecodePCODE.bat PPLTLS88CUR.xml
 
 (Reads a PeopleTools project file, and extracts all PeopleCode segments it contains, as well as the SQL definitions)
 
@@ -90,7 +89,7 @@ Note that the batch files need to be started from the base directory (with the s
 
 Installation on Unix: same, but use the .sh scripts instead of the batch files. You will have to do something like 
 
-	chmod 700 *.sh
+    chmod 700 *.sh
 	
 first. In Unix, the entries in the classpath are separated by :, not ; .
 
