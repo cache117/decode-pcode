@@ -1,0 +1,100 @@
+*** items.xsl.orig	2005-11-04 18:15:52.000000000 -0400
+--- items.xsl	2011-12-22 09:55:06.364976600 -0500
+***************
+*** 73,78 ****
+--- 73,80 ----
+  <xsl:template match="item" mode="keylist">
+    <xsl:variable name="objtypename" select="../@name"/>
+    <xsl:variable name="itemid" select="@id"/>
++   <xsl:variable name="sourcepcode" select="@sourcepcode"/>
++   <xsl:variable name="targetpcode" select="@targetpcode"/>
+    <xsl:variable name="titletext" select="concat('Expand ',$itemid)"/>
+    <xsl:variable name="rowclass">
+     <xsl:choose>
+***************
+*** 145,156 ****
+              <xsl:variable name="atitletext1" select="concat('Hide this attribute',' ')"/>
+  
+              <tr   id="{$attribid}" name="{$attribname}">
+              <xsl:for-each select="../value">
+                  <td class="{$rowclass2}"></td>
+              </xsl:for-each>
+                  <td  class="{$rowclass2}">
+                      <xsl:value-of select="@name"/></td>
+!                 <td  class="{$rowclass2}"><xsl:value-of disable-output-escaping="yes" select="source"/></td>
+                  <td  class="{$rowclass2}" width="3%">
+                  <xsl:if test="($cSource='same')"></xsl:if>
+                  <xsl:if test="($cSource='targetonly')">
+--- 147,195 ----
+              <xsl:variable name="atitletext1" select="concat('Hide this attribute',' ')"/>
+  
+              <tr   id="{$attribid}" name="{$attribname}">
++                 <!--- DecodePCODE start -->
++                 <xsl:choose>
++                 	<xsl:when test="($attribname='pcode')">	
++                 		<td/>
++                 		<td>
++                 		     <table>
++                 			<tr>
++ 					    <xsl:for-each select="link">
++ 						<td class="{$rowclass2}">
++ 						 <a class="PSHYPERLINK"> <xsl:attribute name="href"> <xsl:value-of select="."/> </xsl:attribute>			                 
++ 						     <xsl:attribute name="title"> <xsl:value-of select="@hover"/> </xsl:attribute>						 			
++ 						     <xsl:value-of select="@tree"/> pcode
++ 						 </a>
++ 						</td>
++ 					    </xsl:for-each>
++ 			            	</tr>
++ 			            </table>
++ 			 	</td>
++ 			 	<td/>
++                 		<td>
++                 		     <table>
++                 			<tr>
++ 					    <xsl:for-each select="diff">
++ 						<td class="{$rowclass2}">
++ 						 <a class="PSHYPERLINK"> <xsl:attribute name="href"> <xsl:value-of select="."/> </xsl:attribute>			                 
++ 						     <xsl:value-of select="@tree"/> diff
++ 						 </a>
++ 						</td>
++ 					    </xsl:for-each>
++ 			            	</tr>
++ 			            </table>
++ 			 	</td>
++                 	</xsl:when>
++                 	<xsl:otherwise>
++ 		<!-- DecodePCODE end -->
+              <xsl:for-each select="../value">
+                  <td class="{$rowclass2}"></td>
+              </xsl:for-each>
+                  <td  class="{$rowclass2}">
+                      <xsl:value-of select="@name"/></td>
+!                  <td  class="{$rowclass2}">
+!                 		<xsl:value-of disable-output-escaping="yes" select="source"/>
+!                 </td>
+                  <td  class="{$rowclass2}" width="3%">
+                  <xsl:if test="($cSource='same')"></xsl:if>
+                  <xsl:if test="($cSource='targetonly')">
+***************
+*** 160,166 ****
+                  <img src="../source/images/LEFT_ARROW.gif" width="16" height="16" border="0"/> 
+                  </xsl:if>
+                  </td>
+!                 <td  class="{$rowclass2}"><xsl:value-of disable-output-escaping="yes" select="target"/></td>
+              </tr>
+          </xsl:for-each>
+      </xsl:for-each>
+--- 199,211 ----
+                  <img src="../source/images/LEFT_ARROW.gif" width="16" height="16" border="0"/> 
+                  </xsl:if>
+                  </td>
+!                  <td  class="{$rowclass2}">
+!                 		<xsl:value-of disable-output-escaping="yes" select="target"/>
+!                 </td>
+!                 <!-- DecodePCODE start -->
+!                 </xsl:otherwise>
+!                 </xsl:choose>
+!                 <!-- DecodePCODE end -->
+              </tr>
+          </xsl:for-each>
+      </xsl:for-each>

@@ -46,6 +46,10 @@ fabric.properties
 ### Java template
 # Compiled class file
 *.class
+!bin/decodepcode/*.class
+!bin/decodepcode/compares/*.class
+!bin/decodepcode/git/*.class
+!bin/decodepcode/svn/*.class
 
 # Log file
 *.log
@@ -66,3 +70,4 @@ fabric.properties
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+target/
