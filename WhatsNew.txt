@@ -1,0 +1,59 @@
+0.61	Combine 'custom' keyword with others, e.g. 'since-last-time custom' in a nightly script if you only 
+	want to submit your own changes, but not Oracle-delivered fixes/bugs (this will keep your repository
+	size small, but you won't be able to tell if a customization has been wiped out by a bundle).
+	
+0.60	New feature for processing multiple environments: 'ancestor' property. For newly added PeopleCode segments,
+	'ancestor' versions of the code will first be submitted, so that the version control history
+	will show (typically) DEMO > PROD > DEV > later versions in DEV. See 'Setting up version control.pdf'.
+
+0.55	Fix for bug #16 ("can't find PSPCMPROG record" multiple environments). 
+
+0.54	Fix for bug #15 ('Large PeopleCode files get truncated'). Query on PSPCMTXT was wrong. No more need for 
+	'AlwaysDecode' line in properties file.
+
+0.53	Fix where-clause for Application Package PeopleCode in project; improve filter for invalid characters in file name.
+
+0.52	Read plain-text PeopleCode from table PSPCMTXT, if it exists (tools >= 8.52)
+
+0.51	Fix for missing file extension (.pcode/.last_update) and mangled peoplecode
+	contents (bug introduced with v0.46)
+
+0.50	New script: DecodePCODE_Git.bat, for submitting to Git repository.
+
+0.46	Changes to ensure valid directory names (also affecting SVN path).
+
+0.45	No new features, but somewhat more forgiving of unexpected values of PSSQLDEFN.SQLID.
+
+0.44	Process SQLs with SQLTYPE other than 2 (standalone/AppEngine/other); improve three-way merge report and documentation.
+
+0.43	Parse byte code 83 = 'Doc'; substitute invalid characters in directory path; close SQL cursors
+
+0.42	Two fixes in query used for extracting ppc for project: one to make it process Application Package ppc,
+	one to correct problem that manifests itself only with MS SQL Server.
+
+0.41	Added 'OPRID' parameter to select on LASTUPDOPRID
+
+0.40	Support for application upgrades: attempts three-way merge of PeopleCode segments. 
+	Results available via Browser Report.See "Using DecodePCODE_Merge.pdf".
+
+0.36	Fix for null pointer exception when PSSQLDEFN.LASTUPDDTTM is NULL. Also preconfigured
+	the Oracle 5 JDBC driver in the .bat files, and updated the README.
+
+0.35    Fix for processing Component Record Field peoplecode. Store SQL for specific DBTYPEs and for non-"GBL" markets
+	in separate directories
+
+0.34	Changes in SVN folder creation. Added document 'Setting up version control.pdf'.
+
+0.32	Small change in example decodePC.properties file (commenting out second and third processing specification); Added this file.
+
+0.31 	Fix for creating folders / submitting files when using http:// protocol (worked only for svn:// protocol).
+
+0.30	Allows parallel processing of several PeopleSoft environments, with PeopleCode/SQL text being committed to separate branches in 
+	SVN (or written to separate directory trees).
+
+0.20	Supports committing PeopleCode/SQL text to Subversion.
+
+0.11	Output some text to the console to show output path.
+
+0.10	First version on SourceForge. Can extract data from PeopleTools tables (decoding PeopleCode bytecode and/or reading SQL text) and 
+	save it to files; can also extract PeopleCode and SQL text from PeopleTools .xml project files.
